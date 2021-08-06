@@ -117,11 +117,11 @@ public class Model extends Observable {
 
         for(int col = 0; col <= this.board.size()-1; col++) {
             int nullOffset = 0;
-            for(int row = this.board.size()-1; row >= 0; row--) { // loop from top row to bottom row
+            for(int row = this.board.size()-1; row >= 0; row--) { /** loop from top row to bottom row */
 
                 if (this.board.tile(col,row)==null) {nullOffset +=1;}
                 else {
-                    // step 1: detect merge
+                    /** step 1: detect merge */
                     for (int nextRow=row-1; nextRow>=0; nextRow--) {
                         if (this.board.tile(col,nextRow) == null) {continue;}
                         if (this.board.tile(col,row).value() == this.board.tile(col, nextRow).value()) {
@@ -130,7 +130,7 @@ public class Model extends Observable {
                         }
                         break;
                     }
-                    // step 2: perform offset
+                    /** step 2: perform offset */
                     if (nullOffset != 0) {
                         board.move(col, row + nullOffset, this.board.tile(col,row));
                         changed = true;
